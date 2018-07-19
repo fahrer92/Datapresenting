@@ -43,23 +43,25 @@
     .triangle {
     	width: 0;
     	height: 0;
-      margin-top: 5px;
       margin-right: 60px;
     	border-left: 5px solid transparent;
     	border-right: 5px solid transparent;
       border-bottom: 10px solid;
       position: relative;
+      left: 80px;
       bottom: 20px;
     }
 
-    .triangle-required{
-      left: 80px;
+    .triangle-green{
       border-bottom: 10px solid #86C046;
     }
 
-    .triangle-current{
-      left:50px;
+    .triangle-blue{
       border-bottom: 10px solid #5D8FD1;
+    }
+
+    .triangle-orange{
+      border-bottom: 10px solid #FF6B00;
     }
 
     .dot {
@@ -82,9 +84,12 @@
       margin-right: 70px;
     }
 
-    .cost{
+    .cost-p{
       position:relative;
       left: 10%;
+    }
+    .btn{
+      min-width: 160px;
     }
 
     .infoBox{
@@ -92,8 +97,7 @@
     }
 
     .tpdiWrapper{
-      margin-top:200px;
-      margin-bottom:100px;
+      margin-top:50px;
     }
 
 
@@ -105,24 +109,24 @@
 
   <body>
     <div class = "container">
-        <div class = "dcWrapper">
+        <div>
            <Div>
               <h4>Death Cover</h4>
               <p>You might need another $190,000 of cover to protect your family against the unexpected.</p>
             </Div>
 
           <div class="progress">
-              <div class="progress-bar orange-light" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+              <div class="progress-bar orange-light" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           <div>
 
-            <div class = "infoBox float-right">
-              <div class="triangle triangle-required"></div>
+            <div class = "float-right">
+              <div class="triangle triangle-green"></div>
               <button type="button" class="btn green">
                 <span><h6 class="text-white">Required</h6></span>
                 <span><h4 class ="text-white">$400,000</h4></span>
                 <span class = "text-white">
-                  <p class = "cost">cost: $300/year
+                  <p class = "cost-p">cost: $300/year
                      <span class="dot float-right">
                         <i class="fas fa-info"></i>
                       </span>
@@ -131,11 +135,11 @@
               </button>
             </div>
 
-            <div class = "infoBox">
-              <div class="triangle triangle-current"></div>
+            <div class = "infoBox infoBox-left">
+              <div class="triangle triangle-orange"></div>
               <button type="button" class="btn btn-light">
                 <span>Current</span>
-                <span class = "text-primary"><h5>$400,000</h5></span>
+                <span><h5 style ="color:#FF6B00">$250,000</h5></span>
                 <span><p>cost: $300/year</p></span>
               </button>
             </div>
@@ -150,26 +154,26 @@
             </div>
 
             <div class="progress">
-                <div class="progress-bar green" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar blue" role="progressbar" style="width: 85%"; aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar green" role="progressbar" style="width: 25%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar blue" role="progressbar" style="width: 75%"; aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
             <div class = "infoBox float-right">
-              <div class="triangle triangle-current"></div>
+              <div class="triangle triangle-blue"></div>
               <button type="button" class="btn btn-light">
                 <span>Current</span>
-                <span class = "text-primary"><h5>$400,000</h5></span>
+                <span class = "text-primary"><h5 style ="color:#5D8FD1">$400,000</h5></span>
                 <span><p>cost: $300/year</p></span>
               </button>
             </div>
 
-            <div class = "infoBox">
-              <div class="triangle triangle-required"></div>
+            <div class = "infoBox infoBox-left">
+              <div class="triangle triangle-green"></div>
               <button type="button" class="btn green">
                 <span><h6 class="text-white">Required</h6></span>
                 <span><h4 class ="text-white">$400,000</h4></span>
                 <span class = "text-white">
-                  <p class = "cost">cost: $300/year
+                  <p class = "cost-p">cost: $300/year
                      <span class="dot float-right">
                         <i class="fas fa-info"></i>
                       </span>
@@ -177,6 +181,7 @@
                 </span>
               </button>
             </div>
+            <p style = "margin-top: 50px;">Note: these estimates are not recommendations or financial advice.</p>
         </div>
 
   </body>
