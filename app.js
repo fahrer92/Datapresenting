@@ -1,3 +1,13 @@
+/*
+TODO:
+
+1. Logic for deciding which data to display under DC/ TPDI. CUrrently its all DC
+2. Render Edge Cases
+3.Import DOM Names/ Make it more robust to changes
+
+
+*/
+
 
 // Model CONTROLLER
 var modelController = (function(){
@@ -32,11 +42,24 @@ var modelController = (function(){
 
 // view CONTROLLER
 var viewController = (function(){
-    var htmlUnderInsured;
+
+  /*
+    var formatNumber = function(num){
+      		//is number >999
+          console.log(num);
+          var n = num.toString();
+          console.log(n);
+      if (num.length>3){
+        n=n.substr(0,n.length-3) + ","+ n.substr(n.length-3,3);
+      }
+      console.log(n);
+      return n;
+    }
+*/
   return {
-    dcUnderinsured: function(data, net) {
+    renderUnderinsured: function(data, net, htmlWrapper) {
       //Creat HTML string with placeholder text
-      htmlUnderInsured =
+    var htmlUnderInsured =
                  '<p>You might need another $'+ net + ' of cover to protect your family against the unexpected.</p>'
                 +'  <div class="progress"> <div class="progress-bar orange-light" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>'
 
@@ -65,12 +88,12 @@ var viewController = (function(){
                     +'</div>';
 
       //Insert the HTML into the DOM
-      document.querySelector('.wrapperDC').insertAdjacentHTML('beforeend',htmlUnderInsured);
+      document.querySelector(htmlWrapper).insertAdjacentHTML('beforeend',htmlUnderInsured);
     },
 
-    dcOverinsured: function(data) {
+    renderOverinsured: function(data, htmlWrapper) {
       //Creat HTML string with placeholder text
-      htmlOverInsured =
+      var htmlOverInsured =
                  '<p>You might have more than enough to give you a cash flow safety net.</p>'
                 +'  <div class="progress"><div class="progress-bar green" role="progressbar" style="width: 25%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div><div class="progress-bar blue" role="progressbar" style="width: 75%"; aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>'
 
@@ -99,8 +122,55 @@ var viewController = (function(){
                   +'</div>'
 
       //Insert the HTML into the DOM
-      document.querySelector('.wrapperDC').insertAdjacentHTML('beforeend',htmlOverInsured);
+      document.querySelector(htmlWrapper).insertAdjacentHTML('beforeend',htmlOverInsured);
     },
+    /*
+    renderNoInsurance: function(data, htmlWrapper){
+
+      var requiredCover, requiredPremium;
+      //Display DC or TPDI data depending on which class wrapper is passed into function
+      if(htmlWrapper ===".wrapperDC"){
+        requiredCover = data.DCREQUIREDCOVER;
+        requiredPremium = data.DCREQUIREDPREMIUM;
+      }else if (htmlWrapper === ".wrapperTPDI"){
+        requiredCover = data.TPDIREQUIREDCOVER;
+        requiredPremium = data.TPDIREQUIREDPREMIUM;
+      }else{
+        alert("htmlWrapper MUST EQUAL Dom Wrapper ClassName")
+      }
+
+      var noInsurance = '<div class="progress"><div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div>'
+
+              +'<div class = "infoBox float-right">'
+              +' <div class="triangle triangle-red"></div>'
+              +'<button type="button" class="btn btn-danger">'
+              +'<span><h6 class="text-white">Required</h6></span>'
+              +'  <span><h4 class ="text-white">$'+requiredCover+'</h4></span>'
+                +'<span class = "text-white">'
+                  +'<p class = "cost-p">cost: $'+requiredPremium+'/year'
+                   +'<span class="dot float-right">'
+                    +'<i class="fas fa-info"></i>'
+                    +'</span>'
+                  +'<p>'
+                +'</span>'
+                +'</button>'
+              +'</div>'
+
+              +'<div class = "infoBox infoBox-left">'
+                +'<div class="triangle triangle-red" ></div>'
+                +'<div class="current bg-light text-center">'
+                  +'<p class="font-weight-bold">Current</p>'
+                  +'<p class="text-danger">You are not insured</p>'
+                +'</div>'
+              +'</div>';
+
+
+
+      //Insert the HTML into the DOM
+      document.querySelector(htmlWrapper).insertAdjacentHTML('beforeend',noInsurance);
+
+    }
+    */
 
 
 
@@ -117,13 +187,28 @@ var Controller = (function(modelCtrl,viewCtrl){
     document.querySelector('#inputSubmit').addEventListener('click',function(){
     event.preventDefault();
 
-    console.log(modelCtrl.getInputValue());
+  console.log(modelCtrl.getInputValue());
+  //console.log(data);
 
     //Calculate level of over / under insurance
     var DCNetCoverage = data.DCREQUIREDCOVER - data.DCCURRENTCOVER;
+    var TPDNetCoverage =data.TPDREQUIREDCOVER -data.TPDCURRENTCOVER;
+    console.log(TPDNetCoverage);
 
-    //viewCtrl.dcUnderinsured(data,DCNetCoverage);
-    viewCtrl.dcOverinsured(data);
+    //Check Insurance Requirements and render accordingly
+
+      if (DCNetCoverage>0){
+          viewCtrl.renderUnderinsured(data,DCNetCoverage,'.wrapperDC');
+      }else{
+          viewCtrl.renderOverinsured(data, '.wrapperDC');
+      }
+
+
+      if (TPDNetCoverage>0){
+        viewCtrl.renderUnderinsured(data,TPDNetCoverage,'.wrapperTPDI');
+      }else{
+        viewCtrl.renderOverinsured(data, '.wrapperTPDI');
+      }
   });
 }
 
