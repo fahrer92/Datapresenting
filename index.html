@@ -1,5 +1,5 @@
-<html lang="en
-
+<!DOCTYPE html>
+<html lang="en">
 
   <head>
 
@@ -131,16 +131,44 @@
 
   <body>
     <div class = "container">
-	
+
+      <form>
+        <div class="form-group">
+          TPD Current Cover
+          <input type="text" id ="TPD_current_cover" class="form-control" placeholder="TPD Current Cover">
+          TPD Current Cover Premium
+          <input type="text" id ="TPD_current_cover_premium" class="form-control" placeholder="TPD Current Cover Premium">
+          TPD Required Cover
+          <input type="text"  id ="TPD_current_required_cover" class="form-control" placeholder="TPD Required Cover">
+          TPD required premium
+          <input type="text" id ="TPD_current_required_premium" class="form-control" placeholder="TPD required premium">
+          DC Current Cover
+          <input type="text" id ="DC_current_cover" class="form-control" placeholder="DC Current Cover">
+          DC Current Cover Premium
+          <input type="text" id ="DC_current_cover_premium" class="form-control" placeholder="DC Current Cover Premium">
+          DC required cover
+          <input type="text" id ="DC_current_required_cover" class="form-control" placeholder="DC required cover">
+          DC required premium
+          <input type="text" id ="DC_current_required_premium" class="form-control" placeholder="DC required premium"">
+
+
+      </div>
+        <button type="submit" id= "inputSubmit" class="btn btn-primary">Submit</button>
+
+      </form>
+
+
+
+
        <div>
            <h4>Death Cover</h4>
            <p>You might need another $190,000 of cover to protect your family against the unexpected.</p>
        </div>
-       <div>
+       <div class = "wrapper">
           <div class="progress">
               <div class="progress-bar orange-light" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-          
+
 
           <div class = "infoBox float-right">
             <div class="triangle triangle-green"></div>
@@ -168,14 +196,14 @@
 
         </div>
 
-        <!----------Section ------------->
+        <!--Section ------------->
 
         <div class = "TPDI">
             <h4>Total Permanent Disability Insurance</h4>
             <p>You might have more than enough to give you a cash flow safety net.</p>
         </div>
 
-        <div>
+        <div class = "wrapper">
             <div class="progress">
                 <div class="progress-bar green" role="progressbar" style="width: 25%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                 <div class="progress-bar blue" role="progressbar" style="width: 75%"; aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
@@ -189,7 +217,7 @@
                 <span><p>cost: $300/year</p></span>
               </div>
             </div>
-            
+
 
             <div class = "infoBox infoBox-left">
               <div class="triangle triangle-green"></div>
@@ -208,17 +236,17 @@
             <p style = "margin-top: 50px;">Note: these estimates are not recommendations or financial advice.</p>
         </div>
 
-        <!----------Section ------------->
+        <!--Section ------------->
 
         <div style = "margin-top:150px;">
             <h4>EDGE CASE: Exactly the right amount of cover</h4>
             <p>It looks like your insurance coverage is adequate</p>
         </div>
-        <div>
+        <div class = "wrapper">
            <div class="progress">
                <div class="progress-bar green" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
              </div>
-         
+
              <div class = "infoBox float-right">
                <div class="triangle triangle-green"></div>
                <div class="current bg-light text-center">
@@ -229,41 +257,44 @@
              </div>
         </div>
 
-           <!----------Section ------------->
+           <!--Section ------------->
 
         <div style = "margin-top:150px;">
                <h4>EDGE CASE: Insurance is zero but protection wanted</h4>
                <p>You might need to purchase insurance to protect your family</p>
         </div>
-		<div>
-			<div class="progress">
-				   <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-			
-			<div class = "infoBox float-right">
-			  <div class="triangle triangle-red"></div>
-			  <button type="button" class="btn btn-danger">
-				<span><h6 class="text-white">Required</h6></span>
-				<span><h4 class ="text-white">$400,000</h4></span>
-				<span class = "text-white">
-				  <p class = "cost-p">cost: $300/year
-					 <span class="dot float-right">
-						<i class="fas fa-info"></i>
-					  </span>
-				  <p>
-				</span>
-			  </button>
-			</div>
 
-			<div class = "infoBox infoBox-left">
-				<div class="triangle triangle-red" ></div>
-				<div class="current bg-light text-center">
-				  <p class="font-weight-bold">Current</p>
-				  <p class="text-danger">You are not insured</p>
-				</div>
-			</div>
-		</div>	
+    		<div class = "wrapper">
+    			<div class="progress">
+    				   <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    			</div>
+
+    			<div class = "infoBox float-right">
+    			  <div class="triangle triangle-red"></div>
+    			  <button type="button" class="btn btn-danger">
+    				<span><h6 class="text-white">Required</h6></span>
+    				<span><h4 class ="text-white">$400,000</h4></span>
+    				<span class = "text-white">
+    				  <p class = "cost-p">cost: $300/year
+    					 <span class="dot float-right">
+    						<i class="fas fa-info"></i>
+    					  </span>
+    				  <p>
+    				</span>
+    			  </button>
+    			</div>
+
+    			<div class = "infoBox infoBox-left">
+    				<div class="triangle triangle-red" ></div>
+    				<div class="current bg-light text-center">
+    				  <p class="font-weight-bold">Current</p>
+    				  <p class="text-danger">You are not insured</p>
+    				</div>
+    			</div>
+    		</div>
 	</div>
+
+  <script src="app.js"></script>
   </body>
 
 </html>
